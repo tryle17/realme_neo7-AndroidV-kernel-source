@@ -71,6 +71,8 @@
 #include <trace/hooks/compaction.h>
 #include <trace/hooks/suspend.h>
 #include <trace/hooks/delayacct.h>
+#include <trace/hooks/usb.h>
+#include <trace/hooks/sound.h>
 
 /*
  * Export tracepoints that act as a bare tracehook (ie: have no trace event
@@ -136,6 +138,7 @@ EXPORT_TRACEPOINT_SYMBOL_GPL(android_vh_ftrace_oops_exit);
 EXPORT_TRACEPOINT_SYMBOL_GPL(android_vh_ftrace_size_check);
 EXPORT_TRACEPOINT_SYMBOL_GPL(android_vh_ftrace_format_check);
 EXPORT_TRACEPOINT_SYMBOL_GPL(android_vh_ftrace_dump_buffer);
+EXPORT_TRACEPOINT_SYMBOL_GPL(android_vh_thermal_pm_notify_suspend);
 EXPORT_TRACEPOINT_SYMBOL_GPL(android_vh_ufs_fill_prdt);
 EXPORT_TRACEPOINT_SYMBOL_GPL(android_rvh_ufs_reprogram_all_keys);
 EXPORT_TRACEPOINT_SYMBOL_GPL(android_rvh_ufs_complete_init);
@@ -234,6 +237,7 @@ EXPORT_TRACEPOINT_SYMBOL_GPL(android_vh_gic_v3_affinity_init);
 EXPORT_TRACEPOINT_SYMBOL_GPL(android_vh_check_uninterrupt_tasks);
 EXPORT_TRACEPOINT_SYMBOL_GPL(android_vh_check_uninterrupt_tasks_done);
 EXPORT_TRACEPOINT_SYMBOL_GPL(android_vh_meminfo_proc_show);
+EXPORT_TRACEPOINT_SYMBOL_GPL(android_rvh_meminfo_proc_show);
 EXPORT_TRACEPOINT_SYMBOL_GPL(android_vh_exit_mm);
 EXPORT_TRACEPOINT_SYMBOL_GPL(android_vh_alloc_pages_slowpath);
 EXPORT_TRACEPOINT_SYMBOL_GPL(android_vh_show_mem);
@@ -381,7 +385,7 @@ EXPORT_TRACEPOINT_SYMBOL_GPL(android_vh_binder_ioctl_end);
 EXPORT_TRACEPOINT_SYMBOL_GPL(android_vh_binder_looper_exited);
 EXPORT_TRACEPOINT_SYMBOL_GPL(android_vh_binder_spawn_new_thread);
 EXPORT_TRACEPOINT_SYMBOL_GPL(android_vh_binder_has_special_work_ilocked);
-EXPORT_TRACEPOINT_SYMBOL_GPL(android_vh_binder_detect_low_async_space_locked);
+EXPORT_TRACEPOINT_SYMBOL_GPL(android_vh_binder_detect_low_async_space);
 EXPORT_TRACEPOINT_SYMBOL_GPL(android_rvh_delayacct_init);
 EXPORT_TRACEPOINT_SYMBOL_GPL(android_rvh_delayacct_tsk_init);
 EXPORT_TRACEPOINT_SYMBOL_GPL(android_rvh_delayacct_tsk_free);
@@ -399,4 +403,6 @@ EXPORT_TRACEPOINT_SYMBOL_GPL(android_vh_delayacct_compact_start);
 EXPORT_TRACEPOINT_SYMBOL_GPL(android_vh_delayacct_compact_end);
 EXPORT_TRACEPOINT_SYMBOL_GPL(android_vh_delayacct_wpcopy_start);
 EXPORT_TRACEPOINT_SYMBOL_GPL(android_vh_delayacct_wpcopy_end);
-
+EXPORT_TRACEPOINT_SYMBOL_GPL(android_rvh_usb_dev_suspend);
+EXPORT_TRACEPOINT_SYMBOL_GPL(android_vh_usb_dev_resume);
+EXPORT_TRACEPOINT_SYMBOL_GPL(android_vh_sound_usb_support_cpu_suspend);
