@@ -4,8 +4,6 @@
  * Author: Quentin Perret <qperret@google.com>
  */
 
-#include <linux/init.h>
-#include <linux/initrd.h>
 #include <linux/io.h>
 #include <linux/kmemleak.h>
 #include <linux/kvm_host.h>
@@ -629,7 +627,6 @@ static int __init __pkvm_request_early_module(char *module_name,
 		"PATH=/sbin:/usr/sbin:/bin:/usr/bin",
 		NULL
 	};
-	static bool proc;
 	char **argv;
 	int idx = 0;
 
@@ -661,15 +658,6 @@ static int __init __pkvm_request_early_module(char *module_name,
 	/* Even with CONFIG_STATIC_USERMODEHELPER we really want this path */
 	info->path = modprobe_path;
 
-	if (!proc) {
-		wait_for_initramfs();
-		if (init_mount("proc", "/proc", "proc",
-			       MS_SILENT | MS_NOEXEC | MS_NOSUID, NULL))
-			pr_warn("Couldn't mount /proc, pKVM module parameters will be ignored\n");
-
-		proc = true;
-	}
-
 	return call_usermodehelper_exec(info, UMH_WAIT_PROC | UMH_KILLABLE);
 err:
 	kfree(argv);
@@ -698,7 +686,11 @@ int __init pkvm_load_early_modules(void)
 {
 	char *token, *buf = early_pkvm_modules;
 	char *module_path = CONFIG_PKVM_MODULE_PATH;
-	int err;
+	int err = init_mount("proc", "/proc", "proc",
+			     MS_SILENT | MS_NOEXEC | MS_NOSUID, NULL);
+
+	if (err)
+		return err;
 
 	while (true) {
 		token = strsep(&buf, ",");
