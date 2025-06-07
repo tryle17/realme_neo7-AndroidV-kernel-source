@@ -6888,7 +6888,6 @@ static void __sched notrace __schedule(unsigned int sched_mode)
 #endif
 
 	trace_android_rvh_schedule(sched_mode, prev, next, rq);
-	locking_record_switch_in_cs(prev);
 	if (likely(prev != next)) {
 		rq->nr_switches++;
 		/*
