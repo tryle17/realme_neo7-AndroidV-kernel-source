@@ -19,7 +19,7 @@
 #include <trace/events/sched.h>
 #include <trace/events/task.h>
 #include <linux/sched.h>
-
+#include "oplus_locking.h"
 
 //#include <../kernel/oplus_cpu/sched/sched_assist/sa_common.h>
 
