@@ -22,7 +22,7 @@
 
 
 //#include <../kernel/oplus_cpu/sched/sched_assist/sa_common.h>
-
+#include "oplus_locking.h"
 #include "locking_main.h"
 static inline struct oplus_task_struct *get_oplus_task_struct(struct task_struct *t);
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 1, 0))
