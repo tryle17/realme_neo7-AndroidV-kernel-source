@@ -102,7 +102,6 @@
 #include <trace/hooks/sched.h>
 #include <trace/hooks/dtask.h>
 #include <trace/hooks/cgroup.h>
-#include "../locking/oplus_locking.c"
 #include "../locking/locking_main.h"
 /*
  * Export tracepoints that act as a bare tracehook (ie: have no trace event
@@ -6889,7 +6888,6 @@ static void __sched notrace __schedule(unsigned int sched_mode)
 #endif
 
 	trace_android_rvh_schedule(sched_mode, prev, next, rq);
-	locking_record_switch_in_cs(prev);
 	if (likely(prev != next)) {
 		rq->nr_switches++;
 		/*
