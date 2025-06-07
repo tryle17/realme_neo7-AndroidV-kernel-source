@@ -6886,6 +6886,7 @@ static void __sched notrace __schedule(unsigned int sched_mode)
 #ifdef CONFIG_SCHED_DEBUG
 	rq->last_seen_need_resched_ns = 0;
 #endif
+#include "oplus_locking.h"
 
 	trace_android_rvh_schedule(sched_mode, prev, next, rq);
 	locking_record_switch_in_cs(prev);
