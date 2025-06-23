@@ -162,3 +162,4 @@ static inline struct oplus_task_struct *get_oplus_task_struct(struct task_struct
 }
 
 void locking_record_switch_in_cs(struct task_struct *tsk);
+
